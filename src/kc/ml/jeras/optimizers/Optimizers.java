@@ -1,4 +1,4 @@
-package kc.ml.jeras.trainingparams.optimizers;
+package kc.ml.jeras.optimizers;
 
 // TODO - make constants immutable --> usage: GD.withNesterov();
 public class Optimizers {

@@ -1,4 +1,4 @@
-package kc.ml.jeras.architecture.layers;
+package kc.ml.jeras.architecture;
 
 public class Input extends Layer {
 

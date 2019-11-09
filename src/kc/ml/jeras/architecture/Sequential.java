@@ -1,8 +1,7 @@
 package kc.ml.jeras.architecture;
 
-import kc.ml.jeras.architecture.layers.Layer;
-import kc.ml.jeras.trainingparams.lossfunctions.LossFunction;
-import kc.ml.jeras.trainingparams.optimizers.Optimizer;
+import kc.ml.jeras.lossfunctions.LossFunction;
+import kc.ml.jeras.optimizers.Optimizer;
 
 public final class Sequential {
 

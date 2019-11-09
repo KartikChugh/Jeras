@@ -1,6 +1,4 @@
-package kc.ml.jeras.architecture.layers;
-
-import kc.ml.jeras.activationfunctions.ActivationFunction;
+package kc.ml.jeras.architecture;
 
 public class Dense extends Layer {
 

@@ -1,4 +1,4 @@
-package kc.ml.jeras.trainingparams.optimizers;
+package kc.ml.jeras.optimizers;
 
 public class Gd extends Optimizer<Gd> {
 

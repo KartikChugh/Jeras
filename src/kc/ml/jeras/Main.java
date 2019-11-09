@@ -1,11 +1,11 @@
 package kc.ml.jeras;
 
-import kc.ml.jeras.architecture.layers.Dense;
-import kc.ml.jeras.architecture.layers.Input;
+import kc.ml.jeras.architecture.Dense;
+import kc.ml.jeras.architecture.Input;
 import kc.ml.jeras.architecture.Sequential;
-import kc.ml.jeras.trainingparams.optimizers.Gd;
+import kc.ml.jeras.optimizers.Gd;
 
-import static kc.ml.jeras.trainingparams.lossfunctions.LossFunction.MSE;
+import static kc.ml.jeras.lossfunctions.LossFunction.MSE;
 
 
 public class Main {
