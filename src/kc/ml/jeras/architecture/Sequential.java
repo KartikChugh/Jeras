@@ -3,18 +3,29 @@ package kc.ml.jeras.architecture;
 import kc.ml.jeras.lossfunctions.LossFunction;
 import kc.ml.jeras.optimizers.Optimizer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class Sequential {
 
     private final Compiler compiler = new Compiler();
+    private final List<Layer<?>> layers = new ArrayList<>();
 
     public Sequential() {}
 
-    public Sequential(Layer... layers) {
-        // TODO
+    public Sequential(Layer<?>... layers) {
+        for (Layer<?> layer : layers) {
+            add(layer);
+        }
     }
 
-    public void add(Layer layer) {
-        // TODO
+    // Connects top layer to new layer, adds new layer
+    public void add(Layer<?> forward) {
+        if (!layers.isEmpty()) {
+            final Layer<?> back = layers.get(layers.size()-1);
+            back.connect(forward);
+        }
+        layers.add(forward);
     }
 
     public Compiler compile() {

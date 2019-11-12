@@ -1,9 +1,9 @@
 package kc.ml.jeras.architecture;
 
-public class Input extends Layer {
+public final class Input extends Layer<Input> {
 
     public Input(int units) {
-        super(units);
+        super(Input.class, units);
     }
 
 }

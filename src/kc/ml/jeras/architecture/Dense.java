@@ -1,24 +1,14 @@
 package kc.ml.jeras.architecture;
 
-public class Dense extends Layer {
+public final class Dense extends Layer<Dense> {
 
     public Dense(int units) {
-        super(units);
+        super(Dense.class, units);
     }
 
     public Dense withActivationFunction() {
         // TODO
-        return this;
-    }
-
-    public Dense withWeightInitializer() {
-        // TODO
-        return this;
-    }
-
-    public Dense withBiasInitializer() {
-        // TODO
-        return this;
+        return this.self;
     }
 
 }
