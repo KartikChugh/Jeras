@@ -1,15 +1,15 @@
 package kc.ml.jeras.optimizers;
 
-public abstract class Optimizer<O extends Optimizer<?>> {
+public abstract class Optimizer<T extends Optimizer<?>> {
 
-    final O self;
+    final T self;
     private double learningRate = 0.0;
 
-    Optimizer(Class<O> selfClass) {
+    Optimizer(Class<T> selfClass) {
         this.self = selfClass.cast(this);
     }
 
-    public final O withLearningRate(double learningRate) {
+    public final T withLearningRate(double learningRate) {
         this.learningRate = learningRate;
         return this.self;
     }
