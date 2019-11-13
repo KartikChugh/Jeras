@@ -2,7 +2,7 @@ package kc.ml.jeras.architecture;
 
 class Connection {
 
-    private Node forward;
+    private final Node forward;
     private double weight;
 
     Connection(Node forward, double weight) {
@@ -10,8 +10,8 @@ class Connection {
         this.weight = weight;
     }
 
-    // Fires
-    void fire(double activation) {
+    // Feeds weighted activation into forward node
+    void feed(double activation) {
         final double delta = activation * weight;
         forward.feed(delta);
     }

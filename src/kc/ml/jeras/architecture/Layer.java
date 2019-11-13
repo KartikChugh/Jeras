@@ -5,15 +5,16 @@ import kc.ml.jeras.initializers.Initializer;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Layer<T extends Layer<?>> {
+abstract class Layer<T extends Layer<?>> {
 
-    final T self;
+    protected final T self;
+
     private Bias bias = new Bias();
     private final List<Node> nodes = new ArrayList<>();
     private Initializer weightInitializer; // = glorot_uniform
     private Initializer biasInitializer; // = zeroes
 
-    public Layer(Class<T> selfClass, int units) {
+    Layer(Class<T> selfClass, int units) {
         this.self = selfClass.cast(this);
         for (int i = 0; i < units; i++) {
             nodes.add(new Node());

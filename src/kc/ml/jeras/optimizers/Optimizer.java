@@ -2,7 +2,7 @@ package kc.ml.jeras.optimizers;
 
 public abstract class Optimizer<T extends Optimizer<?>> {
 
-    final T self;
+    protected final T self;
     private double learningRate = 0.0;
 
     Optimizer(Class<T> selfClass) {
