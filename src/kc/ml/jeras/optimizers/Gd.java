@@ -1,4 +1,4 @@
-package kc.ml.jeras.trainingparams.optimizers;
+package kc.ml.jeras.optimizers;
 
 public class Gd extends Optimizer<Gd> {
 
@@ -12,7 +12,7 @@ public class Gd extends Optimizer<Gd> {
 
     public Gd withMomentum(double momentum) {
         this.momentum = momentum;
-        return this.self;
+        return this.self; // QUESTION: does return have to be self field?
     }
 
     public Gd withNesterov() {

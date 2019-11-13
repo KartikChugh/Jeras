@@ -1,4 +1,4 @@
-package kc.ml.jeras.trainingparams.lossfunctions;
+package kc.ml.jeras.lossfunctions;
 // QUESTION - inconsistent import api?
 public abstract class LossFunction {
 
