@@ -11,19 +11,40 @@ abstract class Layer<T extends Layer<?>> {
 
     private Bias bias = new Bias();
     private final List<Node> nodes = new ArrayList<>();
+
     private Initializer weightInitializer; // = glorot_uniform
     private Initializer biasInitializer; // = zeroes
 
     Layer(Class<T> selfClass, int units) {
         this.self = selfClass.cast(this);
+        build(units);
+    }
+
+    private void build(int units) {
         for (int i = 0; i < units; i++) {
             nodes.add(new Node());
         }
         nodes.add(bias);
     }
 
+    /* UTILITY */
+
+    protected final Node getNode(int i) {
+        return nodes.get(i);
+    }
+
+    final double[] getActivations() {
+        return nodes.stream().mapToDouble(Node::getActivation).toArray();
+    }
+
+    final double getSize() {
+        return (bias == null) ? nodes.size() : nodes.size() - 1;
+    }
+
+    /* API */
+
     public final T withoutBias() {
-        nodes.remove(bias);
+        nodes.remove(nodes.size()-1);
         bias = null;
         return this.self;
     }
@@ -38,23 +59,43 @@ abstract class Layer<T extends Layer<?>> {
         return this.self;
     }
 
+    /* IMPLEMENTATION */
+
     // Fully connects this layer to forward layer
-    void connect(Layer<?> forward) {
+    final void connect(Layer<?> forward) {
         for (Node n1 : this.nodes) {
             for (Node n2 : forward.nodes) {
-                // Don't connect to bias
-                if (! (n2 instanceof Bias)) {
-                    final double weight = weightBetween(n1, n2);
-                    n1.connect(n2, weight);
-                }
+                connectNodes(n1, n2);
             }
         }
     }
 
+    private void connectNodes(Node n1, Node n2) {
+        if (! (n2 instanceof Bias)) {
+            final double weight = weightFor(n1);
+            n1.connect(n2, weight);
+        }
+    }
+
     // Returns weight using the appropriate initializer
-    private double weightBetween(Node back, Node forward) {
+    private double weightFor(Node back) {
         final Initializer init = (back instanceof Bias) ? biasInitializer : weightInitializer;
-        return init.nextWeight();
+        return 1;
+        //return init.nextWeight();
+    }
+
+    // Fires nodes
+    final void fire() {
+        for (Node n : nodes) {
+            n.fire();
+        }
+    }
+
+    // Clears nodes
+    final void clear() {
+        for (Node n : nodes) {
+            n.clear();
+        }
     }
 
 }
