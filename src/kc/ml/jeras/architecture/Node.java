@@ -5,7 +5,7 @@ import java.util.List;
 
 class Node {
 
-    private double summation = 0;
+    protected double summation = 0;
     private double activation = 0;
     private List<Connection> connections = new ArrayList<>();
 

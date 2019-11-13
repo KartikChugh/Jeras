@@ -2,11 +2,13 @@ package kc.ml.jeras.architecture;
 
 class Bias extends Node {
 
-    // TODO any returned activation should be 1
+    Bias() {
+        this.summation = 1;
+    }
 
     @Override
     void feed(double delta) {
-        // do nothing
+        throw new UnsupportedOperationException("Attempted to feed bias unit");
     }
 
     @Override
