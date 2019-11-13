@@ -8,7 +8,7 @@ public final class Dense extends Layer<Dense> {
 
     public Dense withActivationFunction() {
         // TODO
-        return this.self;
+        return super.getSelf();
     }
 
 }

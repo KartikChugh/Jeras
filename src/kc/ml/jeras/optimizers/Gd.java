@@ -12,12 +12,12 @@ public class Gd extends Optimizer<Gd> {
 
     public Gd withMomentum(double momentum) {
         this.momentum = momentum;
-        return this.self; // QUESTION: does return have to be self field?
+        return super.getSelf(); // QUESTION: does return have to be self field?
     }
 
     public Gd withNesterov() {
         this.nesterov = true;
-        return this.self;
+        return super.getSelf();
     }
 
 }

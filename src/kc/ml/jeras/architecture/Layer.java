@@ -7,7 +7,7 @@ import java.util.List;
 
 abstract class Layer<T extends Layer<?>> {
 
-    protected final T self;
+    private final T self;
 
     private Bias bias = new Bias();
     private final List<Node> nodes = new ArrayList<>();
@@ -25,6 +25,10 @@ abstract class Layer<T extends Layer<?>> {
             nodes.add(new Node());
         }
         nodes.add(bias);
+    }
+
+    protected final T getSelf() {
+        return this.self;
     }
 
     /* UTILITY */
