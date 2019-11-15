@@ -7,6 +7,7 @@ public final class Input extends Layer<Input> {
     }
 
     void feedInputs(double[] inputs) {
+        // iterate over inputs, not nodes, to avoid feeding bias
         for (int i = 0; i < inputs.length; i++) {
             final double input = inputs[i];
             final Node n = getNode(i);

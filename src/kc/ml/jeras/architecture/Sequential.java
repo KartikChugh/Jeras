@@ -61,6 +61,7 @@ public final class Sequential {
 
     public double[] predict(double[] x) {
         validateInputSize(x);
+
         setInputs(x);
         feedforward();
         final double[] y = getOutputs();
@@ -71,6 +72,7 @@ public final class Sequential {
     // QUESTION - does compile have to be called? if validates model..
     public Compiler compile() {
         getOutputLayer().withoutBias();
+
         return compiler;
     }
 

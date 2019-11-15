@@ -3,7 +3,7 @@ package kc.ml.jeras.architecture;
 class Bias extends Node {
 
     Bias() {
-        this.summation = 1;
+        super(1);
     }
 
     @Override

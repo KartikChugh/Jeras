@@ -5,9 +5,15 @@ import java.util.List;
 
 class Node {
 
-    protected double summation = 0;
+    private double summation = 0;
     private double activation = 0;
     private final List<Connection> connections = new ArrayList<>();
+
+    Node() {}
+
+    protected Node(int initialSummation) {
+        this.summation = initialSummation;
+    }
 
     final double getActivation() {
         return activation;
