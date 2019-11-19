@@ -10,4 +10,8 @@ public abstract class Initializer<T extends Initializer<?>> {
 
     public abstract double nextWeight();
 
+    public void updateDistributionParameters(int fanIn, int fanOut) {
+        // do nothing by default
+    }
+
 }

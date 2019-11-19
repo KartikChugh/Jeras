@@ -13,4 +13,5 @@ public final class Constant extends Initializer<Constant> {
     public double nextWeight() {
         return value;
     }
+
 }
