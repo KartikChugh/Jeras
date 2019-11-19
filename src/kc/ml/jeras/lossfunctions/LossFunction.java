@@ -1,5 +1,5 @@
 package kc.ml.jeras.lossfunctions;
-// QUESTION - inconsistent import api?
+
 public abstract class LossFunction {
 
     public static final LossFunction MSE = new LossFunction() {

@@ -46,9 +46,11 @@ abstract class Layer<T extends Layer<?>> {
 
     /* API */
 
-    public final T withoutBias() { // FIXME can remove regular units via repeated calls
-        nodes.remove(nodes.size()-1);
-        bias = null;
+    public final T withoutBias() {
+        if (bias != null) {
+            nodes.remove(nodes.size()-1);
+            bias = null;
+        }
         return this.self;
     }
 
