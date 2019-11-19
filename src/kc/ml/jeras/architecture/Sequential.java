@@ -38,8 +38,7 @@ public final class Sequential {
     }
 
     /* API */
-
-    // TODO validate input layer is first
+    
     public void add(Layer<?> forward) {
         layers.add(forward);
     }
@@ -64,15 +63,30 @@ public final class Sequential {
         return y;
     }
 
-    // TODO - validate layers size > 1
     public Compiler compile() {
-        getOutputLayer().withoutBias();
-        getInputLayer().updateInitializers(0);
-        connectLayers();
+        validateModel();
+        configureModel();
         return compiler;
     }
 
     /* IMPLEMENTATION */
+
+    private void validateModel() {
+        if (layers.size() < 2) {
+            throw new IllegalStateException("Insufficient layer count");
+        }
+        try {
+            getInputLayer();
+        } catch (ClassCastException e) {
+            throw new IllegalStateException("First layer must be Input layer");
+        }
+    }
+
+    private void configureModel() {
+        getOutputLayer().withoutBias();
+        getInputLayer().updateInitializers(0);
+        connectLayers();
+    }
 
     private void connectLayers() {
         for (int i = 0; i < layers.size()-1; i++) {
