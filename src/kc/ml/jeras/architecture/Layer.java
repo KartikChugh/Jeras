@@ -20,10 +20,10 @@ abstract class Layer<T extends Layer<?>> {
 
     Layer(Class<T> selfClass, int units) {
         this.self = selfClass.cast(this);
-        build(units);
+        initialize(units);
     }
 
-    private void build(int units) {
+    private void initialize(int units) {
         for (int i = 0; i < units; i++) {
             nodes.add(new Node());
         }
@@ -40,18 +40,19 @@ abstract class Layer<T extends Layer<?>> {
         return nodes.stream().mapToDouble(Node::getActivation).toArray();
     }
 
-    final double getSize() {
+    final int getSize() { // TODO encapsulate this further
         return (bias == null) ? nodes.size() : nodes.size() - 1;
     }
 
     /* API */
 
-    public final T withoutBias() {
+    public final T withoutBias() { // FIXME can remove regular units via repeated calls
         nodes.remove(nodes.size()-1);
         bias = null;
         return this.self;
     }
 
+    // TODO validate/prevent initializer calls on output layer
     public final T withWeightInitializer(Initializer init) {
         this.weightInitializer = init;
         return this.self;
@@ -66,6 +67,8 @@ abstract class Layer<T extends Layer<?>> {
 
     // Fully connects this layer to forward layer
     final void connect(Layer<?> forward) {
+        final int forward_fanIn = this.getSize();
+        forward.updateInitializers(forward_fanIn);
         for (Node n1 : this.nodes) {
             for (Node n2 : forward.nodes) {
                 connectNodes(n1, n2);
@@ -73,6 +76,13 @@ abstract class Layer<T extends Layer<?>> {
         }
     }
 
+    protected void updateInitializers(int fanIn) {
+        final int fanOut = getSize();
+        weightInitializer.updateDistributionParameters(fanIn, fanOut);
+        biasInitializer.updateDistributionParameters(fanIn, fanOut);
+    }
+
+    // TODO preclude instanceof checks with separate types for non-Bias nodes
     private void connectNodes(Node n1, Node n2) {
         if (! (n2 instanceof Bias)) {
             final double weight = weightFor(n1);

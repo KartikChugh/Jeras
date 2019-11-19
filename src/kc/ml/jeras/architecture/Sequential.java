@@ -39,13 +39,8 @@ public final class Sequential {
 
     /* API */
 
-    // Connects top layer to new layer, adds new layer
     // TODO validate input layer is first
     public void add(Layer<?> forward) {
-        if (!layers.isEmpty()) {
-            final Layer<?> back = getOutputLayer();
-            back.connect(forward);
-        }
         layers.add(forward);
     }
 
@@ -69,14 +64,23 @@ public final class Sequential {
         return y;
     }
 
-    // QUESTION - does compile have to be called? if validates model..
+    // TODO - validate layers size > 1
     public Compiler compile() {
         getOutputLayer().withoutBias();
-
+        getInputLayer().updateInitializers(0);
+        connectLayers();
         return compiler;
     }
 
     /* IMPLEMENTATION */
+
+    private void connectLayers() {
+        for (int i = 0; i < layers.size()-1; i++) {
+            final Layer<?> back = layers.get(i);
+            final Layer<?> forward = layers.get(i+1);
+            back.connect(forward);
+        }
+    }
 
     private void validateInputSize(double[] x) {
         if (x.length != getInputLayer().getSize()) {
