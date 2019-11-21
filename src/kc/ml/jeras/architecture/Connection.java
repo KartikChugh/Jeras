@@ -6,6 +6,9 @@ class Connection {
     private double weight;
 
     Connection(Node forward, double weight) {
+        if (forward.isBias()) {
+            throw new UnsupportedOperationException("Attempted to connect to bias unit");
+        }
         this.forward = forward;
         this.weight = weight;
     }

@@ -40,7 +40,7 @@ abstract class Layer<T extends Layer<?>> {
         return nodes.stream().mapToDouble(Node::getActivation).toArray();
     }
 
-    final int getSize() { // TODO encapsulate this further
+    final int getSize() {
         return (bias == null) ? nodes.size() : nodes.size() - 1;
     }
 
@@ -84,9 +84,8 @@ abstract class Layer<T extends Layer<?>> {
         biasInitializer.updateDistributionParameters(fanIn, fanOut);
     }
 
-    // TODO preclude instanceof checks with separate types for non-Bias nodes
     private void connectNodes(Node n1, Node n2) {
-        if (! (n2 instanceof Bias)) {
+        if (!n2.isBias()) {
             final double weight = weightFor(n1);
             n1.connect(n2, weight);
         }
@@ -94,7 +93,7 @@ abstract class Layer<T extends Layer<?>> {
 
     // Returns weight using the appropriate initializer
     private double weightFor(Node back) {
-        final Initializer init = (back instanceof Bias) ? biasInitializer : weightInitializer;
+        final Initializer init = back.isBias() ? biasInitializer : weightInitializer;
         return init.nextWeight();
     }
 

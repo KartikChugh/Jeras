@@ -7,13 +7,17 @@ class Bias extends Node {
     }
 
     @Override
-    void feed(double delta) {
+    protected final void feed(double delta) {
         throw new UnsupportedOperationException("Attempted to feed bias unit");
     }
 
     @Override
-    void clear() {
+    protected final void clear() {
         // do nothing
     }
 
+    @Override
+    protected final boolean isBias() {
+        return true;
+    }
 }

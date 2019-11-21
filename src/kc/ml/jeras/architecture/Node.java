@@ -19,11 +19,11 @@ class Node {
         return activation;
     }
 
-    void feed(double delta) {
+    protected void feed(double delta) {
         summation += delta;
     }
 
-    void clear() {
+    protected void clear() {
         summation = 0;
         activation = 0;
     }
@@ -45,6 +45,10 @@ class Node {
     private void activate() {
         // TODO
         activation = summation;
+    }
+
+    protected boolean isBias() {
+        return false;
     }
 
 }
