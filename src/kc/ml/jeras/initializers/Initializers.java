@@ -10,4 +10,10 @@ public final class Initializers {
     public static final GlorotUniform GLOROT_UNIFORM = new GlorotUniform();
     public static final HeUniform HE_UNIFORM = new HeUniform();
 
+    public static final RandomNormal RANDOM_NORMAL = new RandomNormal();
+    public static final TruncatedNormal TRUNCATED_NORMAL = new TruncatedNormal();
+    public static final LeCunNormal LECUN_NORMAL = new LeCunNormal();
+    public static final GlorotNormal GLOROT_NORMAL = new GlorotNormal();
+    public static final HeNormal HE_NORMAL = new HeNormal();
+
 }
