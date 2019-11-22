@@ -69,8 +69,6 @@ abstract class Layer<T extends Layer<?>> {
 
     // Fully connects this layer to forward layer
     final void connect(Layer<?> forward) {
-        final int forward_fanIn = this.getSize();
-        forward.updateInitializers(forward_fanIn);
         for (Node n1 : this.nodes) {
             for (Node n2 : forward.nodes) {
                 connectNodes(n1, n2);

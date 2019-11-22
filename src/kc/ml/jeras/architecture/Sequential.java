@@ -92,6 +92,7 @@ public final class Sequential {
         for (int i = 0; i < layers.size()-1; i++) {
             final Layer<?> back = layers.get(i);
             final Layer<?> forward = layers.get(i+1);
+            forward.updateInitializers(back.getSize());
             back.connect(forward);
         }
     }
