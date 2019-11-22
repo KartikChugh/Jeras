@@ -27,4 +27,11 @@ public abstract class AbstractRandomUniform<T extends AbstractRandomUniform<?>> 
         return limit;
     }
 
+    @Override
+    public T copy() {
+        final T copy = super.copy();
+        copy.withLimit(limit);
+        return copy;
+    }
+
 }

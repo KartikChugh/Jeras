@@ -55,13 +55,13 @@ abstract class Layer<T extends Layer<?>> {
     }
 
     // TODO validate/prevent initializer calls on output layer
-    public final T withWeightInitializer(Initializer init) {
-        this.weightInitializer = init;
+    public final T withWeightInitializer(Initializer<?> init) {
+        this.weightInitializer = init.copy();
         return this.self;
     }
 
-    public final T withBiasInitializer(Initializer init) {
-        this.biasInitializer = init;
+    public final T withBiasInitializer(Initializer<?> init) {
+        this.biasInitializer = init.copy();
         return this.self;
     }
 
@@ -91,7 +91,7 @@ abstract class Layer<T extends Layer<?>> {
 
     // Returns weight using the appropriate initializer
     private double weightFor(Node back) {
-        final Initializer init = back.isBias() ? biasInitializer : weightInitializer;
+        final Initializer<?> init = back.isBias() ? biasInitializer : weightInitializer;
         return init.nextWeight();
     }
 

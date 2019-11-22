@@ -15,4 +15,11 @@ public abstract class AbstractRandom<T extends AbstractRandom<?>> extends Initia
         return this.self;
     }
 
+    @Override
+    public T copy() {
+        final T copy = super.copy();
+        copy.withSeed(seed);
+        return copy;
+    }
+
 }

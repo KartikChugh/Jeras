@@ -14,4 +14,9 @@ public final class Constant extends Initializer<Constant> {
         return value;
     }
 
+    @Override
+    public Constant copy() {
+        return new Constant(value);
+    }
+
 }

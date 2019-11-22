@@ -41,4 +41,10 @@ public abstract class AbstractRandomNormal<T extends AbstractRandomNormal<?>> ex
         return deviations > TRUNCATION_BOUND;
     }
 
+    @Override
+    public T copy() {
+        final T copy = super.copy();
+        copy.withMean(mean).withStdDev(stdDev);
+        return copy;
+    }
 }
