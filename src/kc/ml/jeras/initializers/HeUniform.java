@@ -2,7 +2,7 @@ package kc.ml.jeras.initializers;
 
 public final class HeUniform extends AbstractRandomUniform<HeUniform> {
 
-    public HeUniform() {
+    HeUniform() {
         super(HeUniform.class);
     }
 

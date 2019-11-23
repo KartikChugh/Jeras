@@ -2,7 +2,7 @@ package kc.ml.jeras.initializers;
 
 public final class TruncatedNormal extends AbstractRandomNormal<TruncatedNormal> {
 
-    public TruncatedNormal() {
+    TruncatedNormal() {
         super(TruncatedNormal.class);
     }
 

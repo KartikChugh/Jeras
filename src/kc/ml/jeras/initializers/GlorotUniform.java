@@ -2,7 +2,7 @@ package kc.ml.jeras.initializers;
 
 public final class GlorotUniform extends AbstractRandomUniform<GlorotUniform> {
 
-    public GlorotUniform() {
+    GlorotUniform() {
         super(GlorotUniform.class);
     }
 

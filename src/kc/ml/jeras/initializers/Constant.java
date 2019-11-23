@@ -2,10 +2,19 @@ package kc.ml.jeras.initializers;
 
 public final class Constant extends Initializer<Constant> {
 
-    private final double value;
+    private double value = 0.0;
 
-    public Constant(double value) {
+    Constant() {
         super(Constant.class);
+    }
+
+    public Constant withValue(double value) {
+        final Constant newInit = copy();
+        newInit.setValue(value);
+        return newInit;
+    }
+
+    private void setValue(double value) {
         this.value = value;
     }
 
@@ -16,7 +25,9 @@ public final class Constant extends Initializer<Constant> {
 
     @Override
     public Constant copy() {
-        return new Constant(value);
+        final Constant copy = super.copy();
+        copy.setValue(value);
+        return copy;
     }
 
 }

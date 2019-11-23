@@ -3,12 +3,11 @@ package kc.ml.jeras;
 import kc.ml.jeras.architecture.Dense;
 import kc.ml.jeras.architecture.Input;
 import kc.ml.jeras.architecture.Sequential;
-import kc.ml.jeras.initializers.Constant;
 import kc.ml.jeras.optimizers.Gd;
 
 import java.util.Arrays;
 
-import static kc.ml.jeras.initializers.Initializers.ONES;
+import static kc.ml.jeras.initializers.Initializers.*;
 import static kc.ml.jeras.lossfunctions.LossFunction.MSE;
 
 
@@ -19,7 +18,7 @@ public class Main {
         // Build model architecture
         Sequential model = new Sequential();
         model.add(new Input(2).withBiasInitializer(ONES));
-        model.add(new Dense(4).withBiasInitializer(new Constant(16)));
+        model.add(new Dense(4).withBiasInitializer(CONSTANT.withValue(16)));
         model.add(new Dense(1));
 
         // Set training parameters

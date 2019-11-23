@@ -2,7 +2,7 @@ package kc.ml.jeras.initializers;
 
 public final class LeCunNormal extends AbstractRandomNormal<LeCunNormal> {
 
-    public LeCunNormal() {
+    LeCunNormal() {
         super(LeCunNormal.class);
     }
 

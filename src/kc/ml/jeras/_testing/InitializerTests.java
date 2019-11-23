@@ -13,12 +13,11 @@ public class InitializerTests {
         final long init = System.currentTimeMillis();
 
         Sequential s = new Sequential();
-        s.add(new Input(5));
-        s.add(new Dense(3).withWeightInitializer(LECUN_NORMAL));
-        s.add(new Dense(3).withWeightInitializer(LECUN_NORMAL));
-        s.add(new Dense(3).withWeightInitializer(RANDOM_NORMAL.withSeed(0)));
-        s.add(new Dense(3).withWeightInitializer(RANDOM_NORMAL.withMean(2).withStdDev(10)));
-        s.add(new Dense(3).withWeightInitializer(RANDOM_NORMAL.withStdDev(1)));
+        s.add(new Input(2).withWeightInitializer(RANDOM_NORMAL).withBiasInitializer(ZEROS));
+        s.add(new Dense(16).withWeightInitializer(GLOROT_UNIFORM));
+        s.add(new Dense(16).withWeightInitializer(GLOROT_UNIFORM));
+        s.add(new Dense(8).withWeightInitializer(RANDOM_NORMAL.withStdDev(0.001)));
+        s.add(new Dense(2).withWeightInitializer(CONSTANT.withValue(0.5)));
         s.add(new Dense(1));
         s.compile();
 

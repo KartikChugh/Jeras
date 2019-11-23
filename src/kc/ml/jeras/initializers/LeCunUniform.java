@@ -2,7 +2,7 @@ package kc.ml.jeras.initializers;
 
 public final class LeCunUniform extends AbstractRandomUniform<LeCunUniform> {
 
-    public LeCunUniform() {
+    LeCunUniform() {
         super(LeCunUniform.class);
     }
 

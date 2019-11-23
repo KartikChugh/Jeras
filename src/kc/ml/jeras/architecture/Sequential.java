@@ -71,7 +71,7 @@ public final class Sequential {
 
     /* IMPLEMENTATION */
 
-    private void validateModel() {
+    private void validateModel() {// TODO only one Input layer
         if (layers.size() < 2) {
             throw new IllegalStateException("Insufficient layer count");
         }
@@ -118,8 +118,8 @@ public final class Sequential {
 
     public final class Compiler {
 
-        private Optimizer<?> optimizer; // TODO sgd
-        private LossFunction lossFunction; // TODO mse
+        private Optimizer<?> optimizer;
+        private LossFunction lossFunction;
 
         public Compiler withOptimizer(Optimizer<?> optimizer) {
             this.optimizer = optimizer;

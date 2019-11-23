@@ -2,7 +2,7 @@ package kc.ml.jeras.initializers;
 
 public final class GlorotNormal extends AbstractRandomNormal<GlorotNormal> {
 
-    public GlorotNormal() {
+    GlorotNormal() {
         super(GlorotNormal.class);
     }
 

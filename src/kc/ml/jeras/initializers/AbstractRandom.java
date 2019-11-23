@@ -15,9 +15,9 @@ public abstract class AbstractRandom<T extends AbstractRandom<?>> extends Initia
     }
 
     public final T withSeed(long seed) {
-        final T copy = copy();
-        copy.setSeed(seed);
-        return copy;
+        final T newInit = copy();
+        newInit.setSeed(seed);
+        return newInit;
     }
 
     protected final void setSeed(long seed) {
