@@ -32,6 +32,10 @@ abstract class Layer<T extends Layer<?>> {
 
     /* UTILITY */
 
+    protected boolean isInput() {
+        return false;
+    }
+
     protected final Node getNode(int i) {
         return nodes.get(i);
     }

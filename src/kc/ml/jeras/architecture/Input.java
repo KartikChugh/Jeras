@@ -6,6 +6,11 @@ public final class Input extends Layer<Input> {
         super(Input.class, units);
     }
 
+    @Override
+    protected boolean isInput() {
+        return true;
+    }
+
     void feedInputs(double[] inputs) {
         // iterate over inputs, not nodes, to avoid feeding bias
         for (int i = 0; i < inputs.length; i++) {

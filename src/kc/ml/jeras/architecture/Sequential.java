@@ -40,6 +40,9 @@ public final class Sequential {
     /* API */
     
     public void add(Layer<?> forward) {
+        if (forward.isInput() && !layers.isEmpty()) {
+            throw new IllegalStateException("Must have exactly one input layer added first");
+        }
         layers.add(forward);
     }
 
@@ -71,14 +74,9 @@ public final class Sequential {
 
     /* IMPLEMENTATION */
 
-    private void validateModel() {// TODO only one Input layer
+    private void validateModel() {
         if (layers.size() < 2) {
             throw new IllegalStateException("Insufficient layer count");
-        }
-        try {
-            getInputLayer();
-        } catch (ClassCastException e) {
-            throw new IllegalStateException("First layer must be Input layer");
         }
     }
 
