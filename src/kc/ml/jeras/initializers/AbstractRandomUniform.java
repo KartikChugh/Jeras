@@ -9,8 +9,13 @@ public abstract class AbstractRandomUniform<T extends AbstractRandomUniform<?>> 
     }
 
     public final T withLimit(double limit) {
+        final T newInit = copy();
+        newInit.setLimit(limit);
+        return newInit;
+    }
+
+    protected final void setLimit(double limit) {
         this.limit = limit;
-        return this.self;
     }
 
     @Override
@@ -20,7 +25,7 @@ public abstract class AbstractRandomUniform<T extends AbstractRandomUniform<?>> 
 
     @Override
     public final void updateDistributionParameters(int fanIn, int fanOut) {
-        withLimit(updatedLimit(fanIn, fanOut));
+        setLimit(updatedLimit(fanIn, fanOut));
     }
 
     protected double updatedLimit(int fanIn, int fanOut) {
@@ -30,7 +35,7 @@ public abstract class AbstractRandomUniform<T extends AbstractRandomUniform<?>> 
     @Override
     public T copy() {
         final T copy = super.copy();
-        copy.withLimit(limit);
+        copy.setLimit(limit);
         return copy;
     }
 

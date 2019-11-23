@@ -15,17 +15,22 @@ public abstract class AbstractRandom<T extends AbstractRandom<?>> extends Initia
     }
 
     public final T withSeed(long seed) {
+        final T copy = copy();
+        copy.setSeed(seed);
+        return copy;
+    }
+
+    protected final void setSeed(long seed) {
         this.seed = seed;
         rng.setSeed(seed);
         customSeed = true;
-        return this.self;
     }
 
     @Override
     public T copy() {
         final T copy = super.copy();
         if (customSeed) {
-            copy.withSeed(seed);
+            copy.setSeed(seed);
         }
         return copy;
     }

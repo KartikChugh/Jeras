@@ -2,12 +2,10 @@ package kc.ml.jeras.initializers;
 
 public abstract class Initializer<T extends Initializer<?>> {
 
-    protected final T self;
     private final Class<T> selfClass;
 
     Initializer(Class<T> selfClass) {
         this.selfClass = selfClass;
-        this.self = selfClass.cast(this);
     }
 
     public abstract double nextWeight();

@@ -11,13 +11,23 @@ public abstract class AbstractRandomNormal<T extends AbstractRandomNormal<?>> ex
     }
 
     public final T withMean(double mean) {
-        this.mean = mean;
-        return this.self;
+        final T newInit = copy();
+        newInit.setMean(mean);
+        return newInit;
     }
 
     public final T withStdDev(double stdDev) {
+        final T newInit = copy();
+        newInit.setStdDev(stdDev);
+        return newInit;
+    }
+
+    protected final void setMean(double mean) {
+        this.mean = mean;
+    }
+
+    protected final void setStdDev(double stdDev) {
         this.stdDev = stdDev;
-        return this.self;
     }
 
     @Override
@@ -28,7 +38,7 @@ public abstract class AbstractRandomNormal<T extends AbstractRandomNormal<?>> ex
 
     @Override
     public final void updateDistributionParameters(int fanIn, int fanOut) {
-        withStdDev(updatedStdDev(fanIn, fanOut));
+        setStdDev(updatedStdDev(fanIn, fanOut));
     }
 
     protected double updatedStdDev(int fanIn, int fanOut) {
@@ -44,7 +54,8 @@ public abstract class AbstractRandomNormal<T extends AbstractRandomNormal<?>> ex
     @Override
     public T copy() {
         final T copy = super.copy();
-        copy.withMean(mean).withStdDev(stdDev);
+        copy.setMean(mean);
+        copy.setStdDev(stdDev);
         return copy;
     }
 }
